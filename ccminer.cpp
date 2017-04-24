@@ -1431,6 +1431,7 @@ static bool stratum_gen_work(struct stratum_ctx *sctx, struct work *work)
 		//memcpy(&work->data[36], sctx->xnonce1, sctx->xnonce1_size);
 		//// work->data[36] = swab32(vote); // alt vote submission method
 		//work->data[37] = (rand()*4) << 8; // random work data
+		memcpy(&work->data[44], &sctx->job.coinbase[sctx->job.coinbase_size - 4], 4);
 		sctx->job.height = work->data[32];
 		//applog_hex(work->data, 180);
 	} else {
